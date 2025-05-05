@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login API Call</title>
+</head>
+<body>
+  <h2>Login API Response:</h2>
+  <pre id="output">Logging in...</pre>
+
+  <script>
+    const loginUrl = 'http://127.0.0.1:8085/user/login';
+
+    const payload = {
+      email: "bindu.a@redsling.com",
+      password: "123456"
+    };
+
+    fetch(loginUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Login failed');
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  </script>
+</body>
+</html>
